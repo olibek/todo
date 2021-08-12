@@ -6,12 +6,20 @@ const todoControl = document.querySelector('.todo-control'),
   todoList = document.querySelector('.todo-list'),
   todoCompleted = document.querySelector('.todo-completed');
 
-let todoData = JSON.parse(localStorage.getItem("todo"));
+
+
+let todoData = [];
+
+if (localStorage.getItem("todo") !== null) {
+  todoData = JSON.parse(localStorage.getItem("todo"));
+}
 
 const render = function () {
+
   todoList.textContent = '';
   todoCompleted.textContent = '';
   headerInput.value = '';
+
 
   todoData.forEach(function (item, index) {
     const li = document.createElement('li');
