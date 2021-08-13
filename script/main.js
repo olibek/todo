@@ -20,7 +20,7 @@ const render = function () {
   todoCompleted.textContent = '';
   headerInput.value = '';
 
-
+  localStorage.setItem('todo', JSON.stringify(todoData));
   todoData.forEach(function (item, index) {
     const li = document.createElement('li');
     li.classList.add('todo-item');
@@ -50,27 +50,22 @@ const render = function () {
     });
   });
 };
-let locIn = function () {
-  localStorage.setItem('todo', JSON.stringify(todoData));
 
-};
 todoControl.addEventListener('submit', function (event) {
   event.preventDefault();
-  if (headerInput.value === '') {
+  if (headerInput.value.trim() === '') {
     alert('Заполните поле!');
+    headerInput.value = '';
   } else {
     const newTodo = {
       value: headerInput.value,
       completed: false
     };
     todoData.push(newTodo);
-    locIn();
+
     render();
   }
 
 });
 
-
-
-// todoData = localStorage.getItem('todo', JSON.stringify(todoData));
 render();
